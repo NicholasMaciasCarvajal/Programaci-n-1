@@ -1,0 +1,108 @@
+#include <iostream>
+#include <string>
+
+std::string dec2hex(int n) {
+    std::string hex = "";
+    int r;
+    while (n != 0) {
+        r = n % 16;
+        if (r < 10) {
+            hex = std::to_string(r) + hex;
+        } else {
+            hex = char(r + 55) + hex;
+        }
+        n /= 16;
+    }
+    return hex;
+}
+
+int hex2dec(const std::string& hex) {
+    int decimal = 0;
+    int potencia = 1;
+    for (int i = hex.size() - 1; i >= 0; i--) {
+        char digitoHex = hex[i];
+        int valor;
+        if (digitoHex >= '0' && digitoHex <= '9') {
+            valor = digitoHex - '0';
+        } else if (digitoHex >= 'A' && digitoHex <= 'F') {
+            valor = 10 + (digitoHex - 'A');
+        } else if (digitoHex >= 'a' && digitoHex <= 'f') {
+            valor = 10 + (digitoHex - 'a');
+        } else {
+            std::cerr << "Error: Carácter no válido en el número hexadecimal." << std::endl;
+            return -1;
+        }
+        decimal += valor * potencia;
+        potencia *= 16;
+    }
+    return decimal;
+}
+
+int binarioADecimal(const std::string& numeroBinario) {
+    int resultadoDecimal = 0;
+    int multiplicador = 1;
+
+    for (int i = numeroBinario.size() - 1; i >= 0; --i) {
+        if (numeroBinario[i] == '1') {
+            resultadoDecimal += multiplicador;
+        }
+        multiplicador *= 2;
+    }
+
+    return resultadoDecimal;
+}
+
+std::string decimalABinario(int numeroDecimal) {
+    if (numeroDecimal == 0) {
+        return "0";
+    }
+
+    std::string resultadoBinario = "";
+
+    while (numeroDecimal > 0) {
+        resultadoBinario = std::to_string(numeroDecimal % 2) + resultadoBinario;
+        numeroDecimal /= 2;
+    }
+
+    return resultadoBinario;
+}
+
+int main() {
+    int opcion;
+    std::string numero;
+
+    std::cout << "Seleccione una opción:" << std::endl;
+    std::cout << "1. Decimal a Hexadecimal" << std::endl;
+    std::cout << "2. Hexadecimal a Decimal" << std::endl;
+    std::cout << "3. Binario a Decimal" << std::endl;
+    std::cout << "4. Decimal a Binario" << std::endl;
+    std::cin >> opcion;
+
+    switch (opcion) {
+        case 1:
+            std::cout << "Ingrese un número decimal: ";
+            std::cin >> numero;
+            std::cout << "El número en hexadecimal es: " << dec2hex(std::stoi(numero)) << std::endl;
+            break;
+        case 2:
+            std::cout << "Ingrese un número hexadecimal: ";
+            std::cin >> numero;
+            std::cout << "El número en decimal es: " << hex2dec(numero) << std::endl;
+            break;
+        case 3:
+            std::cout << "Ingrese un número binario: ";
+            std::cin >> numero;
+            std::cout << "El número en decimal es: " << binarioADecimal(numero) << std::endl;
+            break;
+        case 4:
+            std::cout << "Ingrese un número decimal: ";
+            std::cin >> numero;
+            std::cout << "El número en binario es: " << decimalABinario(std::stoi(numero)) << std::endl;
+            break;
+        default:
+            std::cerr << "Opción no válida." << std::endl;
+            break;
+    }
+
+    return 0;
+}
