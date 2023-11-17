@@ -1,0 +1,91 @@
+#include <iostream>
+#include <string>
+
+class Animal {
+public:
+    Animal(std::string nombre, std::string tipodeanimal) : nombre(nombre), tipodeanimal(tipodeanimal) {}
+
+    std::string getNombre() {
+        return nombre;
+    }
+
+    std::string getTipodeanimal() {
+        return tipodeanimal;
+    }
+
+private:
+    std::string nombre;
+    std::string tipodeanimal;
+protected:
+    friend class Cientifico;
+    std::string getAnimal() { 
+        return this -> nombre;
+    }
+};
+
+class Cientifico : public Animal {
+public:
+    Cientifico(std::string nombre, std::string tipodeanimal, std::string EstudioDelAnimal)
+        : Animal(nombre, tipodeanimal), EstudioDelAnimal(EstudioDelAnimal) {}
+
+    std::string getEstudioDelAnimal() {
+        return EstudioDelAnimal;
+    }
+
+private:
+    std::string EstudioDelAnimal;
+};
+
+class AnimalC {
+    public:
+        void Comportamiento() { 
+            std::cout << "Comportamiento del Animal" << std::endl;
+        }
+};
+class Gato : public AnimalC { 
+    public:
+        void Comportamiento() { 
+            std::cout << "El Gato tiene un Comportamiento Dominante" << std::endl;
+        }
+};
+class Ciervo : public AnimalC {
+    public: 
+        void Comportamiento() {
+            std::cout << "El ciervo tiene un Comportamiento Salvaje" << std::endl;
+        }
+};
+class Sobrecarga {
+    public:
+        int Sele(int ani1 , int ani2) {
+            return ani1 + ani2;
+        }
+        int Sele(int ani1 , int ani2 , int ani3) {
+            return ani1 + ani2 + ani3;
+        }
+        int Sele(int ani1 , int ani2 , int ani3 , int ani4) {
+            return ani1 + ani2 + ani3 + ani4;
+        }
+};
+int main() {
+    Animal Perro("Perro", "Canino");
+    std::cout << Perro.getNombre() << std::endl;
+    std::cout << Perro.getTipodeanimal() << std::endl;
+
+    Cientifico Diego("Diego", "Humano", "Comportamiento");
+    std::cout << Diego.getNombre() << std::endl;
+    std::cout << Diego.getTipodeanimal() << std::endl;
+    std::cout << Diego.getEstudioDelAnimal() << std::endl;
+    
+    AnimalC AnimalC;
+    AnimalC.Comportamiento();
+    Gato Gato;
+    Gato.Comportamiento();
+    Ciervo Ciervo;
+    Ciervo.Comportamiento();
+    
+    Sobrecarga Sobrecarga;
+    std::cout << Sobrecarga.Sele(1,2) << std::endl;
+    std::cout << Sobrecarga.Sele(1,2,3) << std::endl;
+    std::cout << Sobrecarga.Sele(1,2,3,4) << std::endl;
+    return 0;
+}
