@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main(){
+    float num1,num2;
+    printf("Da el primer valor, luego el segundo \n");
+    scanf("%f",& num1);
+    scanf("%f",& num2);
+    printf("El resultado de la suma es %f \n", num1+ num2);
+    printf("El resultado de la resta es %f \n", num1- num2);
+    printf("El resultado de la multiplicación es %f \n", num1* num2);
+    printf("El resultado de la división es %f \n", num1/ num2);
+    return 0;
+}
