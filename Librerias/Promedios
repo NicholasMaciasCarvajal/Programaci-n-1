@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+float ObtenerPromedio(float &c1, float &c2, float &c3, float &c4, float &c5) {
+    cout << "Ingresa calificaciones (separadas por espacio): ";
+    cin >> c1 >> c2 >> c3 >> c4 >> c5;
+    return (c1 + c2 + c3 + c4 + c5) / 5;
+}
+int main() {
+    float calif1, calif2, calif3, calif4, calif5;
+    float promedio = ObtenerPromedio(calif1, calif2, calif3, calif4, calif5);
+    cout << "Tu promedio es: " << promedio << endl;
+    if (promedio >= 9) {
+        cout << "Alumno de excelencia" << endl;
+    } else if (promedio >= 6) {
+        cout << "Alumno Aprobado" << endl;
+    } else {
+        cout << "Alumno Reprobado" << endl;
+    }
+    return 0;
+}
