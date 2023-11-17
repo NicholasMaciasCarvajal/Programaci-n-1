@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+
+int binarioADecimal(std::string numeroBinario) {
+    int resultadoDecimal = 0;
+    int multiplicador = 1;
+
+    for (int i = numeroBinario.size() - 1; i >= 0; --i) {
+        if (numeroBinario[i] == '1') {
+            resultadoDecimal += multiplicador;
+        }
+        multiplicador *= 2;
+    }
+
+    return resultadoDecimal;
+}
+
+std::string decimalABinario(int numeroDecimal) {
+    if (numeroDecimal == 0) {
+        return "0";
+    }
+
+    std::string resultadoBinario = "";
+
+    while (numeroDecimal > 0) {
+        resultadoBinario = std::to_string(numeroDecimal % 2) + resultadoBinario;
+        numeroDecimal /= 2;
+    }
+
+    return resultadoBinario;
+}
+
+int main() {
+    int opcion, numeroDecimal;
+    std::string numeroBinario;
+
+    std::cout << "Selecciona una opción:" << std::endl;
+    std::cout << "1. Convertir de binario a decimal" << std::endl;
+    std::cout << "2. Convertir de decimal a binario" << std::endl;
+    std::cin >> opcion;
+
+    if (opcion == 1) {
+        std::cout << "Introduce un número binario: ";
+        std::cin >> numeroBinario;
+        int resultadoDecimal = binarioADecimal(numeroBinario);
+        std::cout << "El número decimal correspondiente es: " << resultadoDecimal << std::endl;
+    } else if (opcion == 2) {
+        std::cout << "Introduce un número decimal: ";
+        std::cin >> numeroDecimal;
+        std::string resultadoBinario = decimalABinario(numeroDecimal);
+        std::cout << "El número binario correspondiente es: " << resultadoBinario << std::endl;
+    } else {
+        std::cout << "Opción inválida." << std::endl;
+    }
+
+    return 0;
+}
