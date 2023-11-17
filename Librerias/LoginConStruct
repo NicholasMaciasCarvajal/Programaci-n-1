@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+struct Persona {
+    std::string nom, con;
+};
+int main() {
+    Persona nicholas{"Nico", "xd"};
+    std::cout << "Ingrese su Nombre: ";
+    std::cin >> nicholas.nom;
+    std::cout << "Ingrese su Contraseña: ";
+    std::cin >> nicholas.con;
+    if (nicholas.nom == "Nico" && nicholas.con == "xd") {
+        std::cout << "Inicio de sesión exitoso" << std::endl;
+    } else {
+        std::cout << "Datos de inicio de sesión incorrectos" << std::endl;
+    }
+    return 0;
+}
