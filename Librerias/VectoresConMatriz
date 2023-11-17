@@ -1,0 +1,18 @@
+#include <stdio.h>
+int main(){
+    float vec[5][3];
+    int i,x;
+    for(i = 0; i<5 ; i++){
+        printf("Escribe los vectores 1: ");
+        scanf("%f",&vec[i][0]);
+    }
+    if(i == 5){
+        for(i = 0; i<5 ; i++){
+        printf("Escribe los vectores 2: ");
+        scanf("%f",&vec[i][1]);
+        vec[i][2] = vec[i][0] + vec[i][1];
+        printf("El resultado en el vector 3: %f \n", vec[i][2]);
+        }
+    }
+    return 0;
+}
