@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+
+int main(){
+    int max = 8;
+    int min = 8;
+    std::string contra;
+    std::string pru;
+    std::string usu;
+    std::cout << "Escriba su Usuario " << std::endl;
+    std::cin >> usu;
+    do {
+    if (usu.size() != 8){
+        std::cout << "Su usuario no tiene 8 caracteres " << std::endl;
+        } else {
+            std::cout << "Su Usuario es correcto " << std::endl;
+            break;
+        }
+    } while(true);
+        std::cout << "Escriba su contraseña de 8 caracteres " << std::endl;
+        std::cin >> contra;
+    do{
+        if (contra.size() != 8 ){
+        std::cout << "Su contraseña no tiene 8 caracteres " << std::endl;
+        } else {
+            std::cout << " Su contraseña es correcta " << std::endl;
+            break;
+        }
+    } while (true);
+    do {
+        std::cout << "Escriba la comprobacion de su contraseña " << std::endl;
+        std::cin >> pru;
+        if (contra != pru ){
+            std::cout << "La contraseña no es verificada " << std::endl;
+        } else {
+            std::cout << "La contraseña es verificada " << std::endl;
+            break;
+        }
+    } while (true);
+    return 0;
+}
