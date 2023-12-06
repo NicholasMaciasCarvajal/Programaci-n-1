@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.26)
-project(Poliza_Base.cpp)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.26)
+project(PolizasDeSeguro)
 
-set(CMAKE_CXX_STANDARD 17)
+SET(CMAKE_CXX_STANDARD 17)
 
-add_executable(Poliza_Base.cpp main.cpp)
+add_executable(PolizasDeSeguro main.cpp
+        Poliza_Base.cpp)

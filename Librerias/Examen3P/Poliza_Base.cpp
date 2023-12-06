@@ -1,163 +1,169 @@
+#ifndef Polizas_h
+#define Polizas_h
+
 #include <iostream>
 #include <string>
 
-//creación de la clase base
+// Creación de la clase base
 class Base {
 public:
-    Base(std::string nombre, std::string curp, int * edad, int * ano, float deducible, float prestamo_max){}
-    //Uso de sets
-    void setNombre(std::string nombre){
+    // Constructor de la clase base
+    Base(std::string nombre, std::string curp, int edad, int ano, float deducible, float prestamo_max)
+            : nombre(nombre), curp(curp), edad(edad), ano(ano), deducible(deducible), prestamo_max(prestamo_max) {}
+
+    // Métodos set
+    void setNombre(std::string nombre) {
         this->nombre = nombre;
-    };
-    void setCurp(std::string curp){
+    }
+    void setCurp(std::string curp) {
         this->curp = curp;
-    };
-    void setEdad(int edad){
-        this->edad = 2023 - * ano;
-    };
-    void setAno(int ano){
+    }
+    void setEdad(int edad) {
+        this->edad = edad;
+    }
+    void setAno(int ano) {
         this->ano = ano;
-    };
-    void setDeducible(float deducible){
+    }
+    void setDeducible(float deducible) {
         this->deducible = deducible;
-    };
-    void setPrestamo_Max(float prestamo_max){
+    }
+    void setPrestamo_Max(float prestamo_max) {
         this->prestamo_max = prestamo_max;
-    };
-    //Uso de gets
-    std::string getNombre() {
-        return this -> nombre;
     }
-    std::string getCurp() {
-        return this -> curp;
+
+    // Métodos get
+    std::string getNombre() const {
+        return this->nombre;
     }
-    int getEdad() {
-        return this -> edad;
+    std::string getCurp() const {
+        return this->curp;
     }
-    int getAno () {
-        return this -> ano;
+    int getEdad() const {
+        return this->edad;
     }
-    float getDeducible () {
-        return this -> deducible;
+    int getAno() const {
+        return this->ano;
     }
-    float getPrestamo_Max () {
-        return this -> prestamo_max;
+    float getDeducible() const {
+        return this->deducible;
     }
-private:
+    float getPrestamo_Max() const {
+        return this->prestamo_max;
+    }
+
+protected:
     std::string nombre;
     std::string curp;
     int edad;
     int ano;
     float deducible;
     float prestamo_max;
-protected:
-    friend class PolizaCasa;
-    std::string getBase() {
-        return this -> nombre;
-        return this -> prestamo_max;
-        return this -> deducible;
-    }
-    friend class PolizaVida;
-    std::string getBase() {
-        return this -> nombre;
-        return this -> edad;
-        return this -> deducible;
-        return this -> prestamo_max;
-    }
-    friend class PolizaCarro;
-    std::string getBase() {
-        return this -> nombre;
-        return this -> deducible;
-        return this -> prestamo_max;
-    }
 };
-//creacion de la clase poliza de casa
-class PolizaCasa : public Base{
+
+// Creación de la clase PolizaCasa
+class PolizaCasa : public Base {
 public:
-    PolizaCasa(int fconstruccion, std::string direccion, float tam) : Base(nombre, deducible, prestamo_max){}
-    //uso de sets
-    void setFconstruccion(int fconstruccion){
+    // Constructor de la clase PolizaCasa
+    PolizaCasa(std::string nombre, float deducible, float prestamo_max, int fconstruccion, std::string direccion, float tam)
+            : Base(nombre, "", 0, 0, deducible, prestamo_max), fconstruccion(fconstruccion), direccion(direccion), tam(tam) {}
+
+    // Métodos set
+    void setFconstruccion(int fconstruccion) {
         this->fconstruccion = fconstruccion;
-    };
-    void setTam(float tam){
+    }
+    void setTam(float tam) {
         this->tam = tam;
-    };
-    void setDireccion(std::string direccion){
+    }
+    void setDireccion(std::string direccion) {
         this->direccion = direccion;
-    };
-    //uso de gets
-    std::string getDireccion() {
-        return this -> direccion;
     }
-    int getFconstruccion() {
-        return this -> fconstruccion;
+
+    // Métodos get
+    std::string getDireccion() const {
+        return this->direccion;
     }
-    float getTam() {
-        return this -> tam;
+    int getFconstruccion() const {
+        return this->fconstruccion;
     }
+    float getTam() const {
+        return this->tam;
+    }
+
 private:
     std::string direccion;
     int fconstruccion;
     float tam;
 };
-//creacion de la clase poliza de vida
+
+// Creación de la clase PolizaVida
 class PolizaVida : public Base {
 public:
-    PolizaVida (bool enfermedades, std::string tiposangre) : Base(nombre, edad, deducible, prestamo_max){}
-    //uso de sets
-    void setEnfermedades(bool enfermedades){
+    // Constructor de la clase PolizaVida
+    PolizaVida(std::string nombre, int edad, float deducible, float prestamo_max, bool enfermedades, std::string tiposangre)
+            : Base(nombre, "", edad, 0, deducible, prestamo_max), enfermedades(enfermedades), tiposangre(tiposangre) {}
+
+    // Métodos set
+    void setEnfermedades(bool enfermedades) {
         this->enfermedades = enfermedades;
     }
-    void setTiposangre(std::string tiposangre){
+    void setTiposangre(std::string tiposangre) {
         this->tiposangre = tiposangre;
     }
-    //uso de gets
-    bool getEnfermedades(){
-        return this -> enfermedades;
+
+    // Métodos get
+    bool getEnfermedades() const {
+        return this->enfermedades;
     }
-    std::string getTiposangre(){
-        return this -> tiposangre;
+    std::string getTiposangre() const {
+        return this->tiposangre;
     }
+
 private:
     std::string tiposangre;
     bool enfermedades;
 };
-//creacion de la clase poliza de carro
+
+// Creación de la clase PolizaCarro
 class PolizaCarro : public Base {
 public:
-    PolizaCarro (std::string modelo, std::string marca, int ano2, float kilometraje, std::string numdeserie) : Base(nombre, deducible, prestamo_max){}
-    //uso de sets
-    void setModelo(std::string modelo){
+    // Constructor de la clase PolizaCarro
+    PolizaCarro(std::string nombre, float deducible, float prestamo_max, std::string modelo, std::string marca, int ano2, float kilometraje, std::string numdeserie)
+            : Base(nombre, "", 0, ano2, deducible, prestamo_max), modelo(modelo), marca(marca), ano2(ano2), kilometraje(kilometraje), numdeserie(numdeserie) {}
+
+    // Métodos set
+    void setModelo(std::string modelo) {
         this->modelo = modelo;
     }
-    void setMarca(std::string marca){
+    void setMarca(std::string marca) {
         this->marca = marca;
     }
-    void setNumdeserie(std::string numdeserie){
+    void setNumdeserie(std::string numdeserie) {
         this->numdeserie = numdeserie;
     }
-    void setAno2(int ano2){
+    void setAno2(int ano2) {
         this->ano2 = ano2;
     }
-    void setkilometraje(float kilometraje){
+    void setKilometraje(float kilometraje) {
         this->kilometraje = kilometraje;
     }
-    //uso de gets
-    std::string getModelo(){
-        return this -> modelo;
+
+    // Métodos get
+    std::string getModelo() const {
+        return this->modelo;
     }
-    std::string getMarca(){
-        return this -> marca;
+    std::string getMarca() const {
+        return this->marca;
     }
-    std::string getNumdeserie(){
-        return this -> numdeserie;
+    std::string getNumdeserie() const {
+        return this->numdeserie;
     }
-    int getAno2(){
-        return this -> ano2;
+    int getAno2() const {
+        return this->ano2;
     }
-    float getKilometraje(){
-        return this -> Kilometraje;
+    float getKilometraje() const {
+        return this->kilometraje;
     }
+
 private:
     std::string modelo;
     std::string marca;
@@ -165,3 +171,5 @@ private:
     int ano2;
     float kilometraje;
 };
+
+#endif
